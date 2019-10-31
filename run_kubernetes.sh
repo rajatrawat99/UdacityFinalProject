@@ -7,6 +7,9 @@
 # dockerpath=<>
 dockerpath=rajatrawat88/myrepo
 
+#Authentication
+docker login --username=rajatrawat88 --password=RajatRawat88
+
 # Step 2
 # Run the Docker Hub container with kubernetes
 kubectl run myrepo --image=rajatrawat88/myrepo:ff --port=80

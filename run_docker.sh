@@ -4,7 +4,7 @@
 
 # Step 1:
 # Build image and add a descriptive tag
-docker build --tag=myrepo .
+docker build --tag=rajatrawat88/myrepo:run2 .
 
 # Step 2: 
 # List docker images
@@ -12,4 +12,4 @@ docker image ls
 
 # Step 3: 
 # Run flask app
-docker run -p 8000:80 myrepo 
+docker run -p 80:80 myrepo 
