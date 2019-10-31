@@ -12,7 +12,7 @@ docker login --username=rajatrawat88 --password=RajatRawat88
 
 # Step 2
 # Run the Docker Hub container with kubernetes
-kubectl run myrepo --image=rajatrawat88/myrepo:ff --port=80
+kubectl run myrepo2 --image=rajatrawat88/myrepo:run2 --port=80
 
 
 # Step 3:
@@ -21,5 +21,5 @@ kubectl get pods
 
 # Step 4:
 # Forward the container port to a host
-kubectl port-forward deployment/myrepo 8000:80
+kubectl port-forward deployment/myrepo2 8000:80
 
