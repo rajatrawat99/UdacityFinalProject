@@ -5,11 +5,11 @@
 # Step 1:
 # This is your Docker ID/path
 # dockerpath=<>
-dockerpath=rajatrawat88/projudacity
+dockerpath=rajatrawat88/myrepo
 
 # Step 2
 # Run the Docker Hub container with kubernetes
-kubectl run projudacity --image=rajatrawat88/projudacity:latest --port=80
+kubectl run myrepo --image=rajatrawat88/myrepo:ff --port=80
 
 
 # Step 3:
@@ -18,5 +18,5 @@ kubectl get pods
 
 # Step 4:
 # Forward the container port to a host
-kubectl port-forward deployment/projudacity 8000:80
+kubectl port-forward deployment/myrepo 8000:80
 

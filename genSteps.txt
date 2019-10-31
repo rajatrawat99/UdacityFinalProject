@@ -1,0 +1,8 @@
+docker build --tag=rajatrawat88/ex1 .
+docker run -p 80:80 rajatrawat88/ex1
+docker push rajatrawat88/myrepo:f
+docker login --username=rajatrawat88
+kubectl get pods
+kubectl run myrepo1 --image=rajatrawat88/myrepo:ff --port=80
+kubectl get pods
+kubectl port-forward deployment/myrepo1 8000:80

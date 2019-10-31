@@ -6,7 +6,7 @@
 # Step 1:
 # Create dockerpath
 # dockerpath=<your docker ID/path>:
-dockerpath=rajatrawat88/projudacity
+dockerpath=rajatrawat88/myrepo
 
 # Step 2:  
 # Authenticate & tag
