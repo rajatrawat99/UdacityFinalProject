@@ -7,3 +7,23 @@ kubectl get pods
 kubectl run myrepo1 --image=rajatrawat88/myrepo:ff --port=80
 kubectl get pods
 kubectl port-forward deployment/myrepo1 8000:80
+
+
+jx create cluster eks --cluster-name=rajat-cloud --node-type t2.medium --nodes 2 --nodes-min 1 --nodes-max 3 --skip-installation=true
+jx install --provider=eks --domain=rajat.cloud --default-environment-prefix=rajat-cloud
+jx install --provider=eks --default-environment-prefix=rajat-cloud
+44.227.164.133.nip.io
+http://jenkins.jx.44.227.164.133.nip.io/login
+
+
+rajatrawat99@gmail.com
+rajatrawat99
+
+git config --global user.name "rajatrawat99"
+git config --global user.email rajatrawat99@gmail.com
+
+https://github.com/settings/tokens/new?scopes=repo,read:user,read:org,user:email,write:repo_hook,delete_repo
+
+eks token: 07e421af733dcf37aaff7e762544d64d2d692b9b
+
+jenkins pwd: mWQJH3p1QvnQ0EX0IY=.
