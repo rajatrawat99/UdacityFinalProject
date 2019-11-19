@@ -4,7 +4,7 @@ pipeline {
 
         stage('Build') {
              steps {
-                 sh 'echo "Hello world"'
+                 sh 'docker version'
                  sh '''
                     echo "Multiline Works"
                     ls -lah
