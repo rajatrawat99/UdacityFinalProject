@@ -4,7 +4,7 @@ pipeline {
 
         stage('Build') {
              steps {
-                 sh 'docker version'
+                 sh 'skaffold'
                  sh '''
                     echo "Multiline Works"
                     ls -lah
