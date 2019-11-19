@@ -8,6 +8,7 @@ pipeline {
                  sh '''
                     echo "Multiline Works"
                     ls -lah
+                    '''
             }
         }
     }
