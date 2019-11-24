@@ -27,3 +27,15 @@ eks token: 07e421af733dcf37aaff7e762544d64d2d692b9b
 
 jenkins pwd: admin / Ho+1VPtfVwkF0su06.GK
 http://jenkins.jx.44.228.96.120.nip.io/login
+
+
+eksctl create cluster \
+--name rjtCloud \
+--version 1.14 \
+--region us-west-2 \
+--nodegroup-name standard-workers \
+--node-type t3.medium \
+--nodes 2 \
+--nodes-min 1 \
+--nodes-max 4 \
+--managed

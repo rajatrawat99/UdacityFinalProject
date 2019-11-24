@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: UdacityCapStone
+  namespace: default
+spec:
+  replicas: 2
+  strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 25%
+  selector:
+    matchLabels:
+      app: UdacityCapStone
+  template:
+    metadata:
+      labels:
+        app: UdacityCapStone
+    spec:
+      containers:
+      - image: image=rajatrawat88/myrepo:run2
+        imagePullPolicy: Always
+        name: UdacityCapStone
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          httpGet:
+             path: /
+             port: 80
+             initialDelaySeconds: 5
+             periodSeconds: 5
+             successThreshold: 1
