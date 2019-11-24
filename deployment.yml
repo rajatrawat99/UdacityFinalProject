@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: UdacityCapStone
+  name: udacity-capstone
   namespace: default
 spec:
   replicas: 2
@@ -12,16 +12,16 @@ spec:
     maxUnavailable: 25%
   selector:
     matchLabels:
-      app: UdacityCapStone
+      app: udacity-capstone
   template:
     metadata:
       labels:
-        app: UdacityCapStone
+        app: udacity-capstone
     spec:
       containers:
       - image: image=rajatrawat88/myrepo:run2
         imagePullPolicy: Always
-        name: UdacityCapStone
+        name: udacity-capstone
         ports:
         - containerPort: 80
         readinessProbe:
