@@ -1,15 +1,11 @@
-pipeline {
-    agent any
-    stages {
+node {
+    def app
 
-        stage('Build') {
-             steps {
-                 sh 'skaffold'
-                 sh '''
-                    echo "Multiline Works"
-                    ls -lah
-                    '''
-            }
-        }
+    stage('Clone repository') {
+        /* Cloning the Repository to our Workspace */
+
+        checkout scm
     }
+
+    
 }

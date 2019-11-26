@@ -23,7 +23,6 @@ git config --global user.email rajatrawat99@gmail.com
 
 https://github.com/settings/tokens/new?scopes=repo,read:user,read:org,user:email,write:repo_hook,delete_repo
 
-eks token: 07e421af733dcf37aaff7e762544d64d2d692b9b
 
 jenkins pwd: admin / Ho+1VPtfVwkF0su06.GK
 http://jenkins.jx.44.228.96.120.nip.io/login
@@ -39,3 +38,13 @@ eksctl create cluster \
 --nodes-min 1 \
 --nodes-max 4 \
 --managed
+
+kubectl run udacity-capstone --image=rajatrawat88/myrepo:run2 --port=80
+kubectl set image deployment/udacity-capstone udacity-capstone=rajatrawat88/myrepo:run2  
+kubectl apply -f deployment.yml  --validate=false
+
+kubectl rollout status deployment/udacity-capstone
+
+
+kubectl create deployment udacity-cap --image=rajatrawat88/myrepo:run2
+kubectl get deployments
