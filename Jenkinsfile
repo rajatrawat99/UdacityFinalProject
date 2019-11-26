@@ -7,5 +7,10 @@ node {
         checkout scm
     }
 
+    stage("Linting") {
+      echo 'Linting...'
+      sh 'hadolint Dockerfile'
+    }
+
     
 }
