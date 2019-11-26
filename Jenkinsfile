@@ -9,7 +9,7 @@ node {
 
     stage("Linting") {
       echo 'Linting...'
-      sh 'hadolint Dockerfile'
+      sh '/home/linuxbrew/.linuxbrew/bin/hadolint Dockerfile'
     }
 
     
