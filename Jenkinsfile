@@ -1,5 +1,6 @@
 node {
-   
+    def customImage
+    def registry = "rajatrawat88/myrepo"
     stage('Clone repository') {
         /* Cloning the Repository to our Workspace */
 
@@ -15,7 +16,7 @@ node {
     stage('Build image') {
         /* This builds the actual image */
 
-        def customImage = docker.build("rajatrawat88:${env.BUILD_ID}")
+        customImage = docker.build("${registry}:${env.BUILD_ID}")
     }
 
     stage('Test image') {
