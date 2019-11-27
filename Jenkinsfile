@@ -16,25 +16,25 @@ node {
     stage('Build image') {
         /* This builds the actual image */
 
-        customImage = docker.build("${registry}")
+       // customImage = docker.build("${registry}")
     }
 
     stage('Test image') {
         
-        customImage.inside {
-            echo "Tests passed"
-        }
+      //  customImage.inside {
+        //    echo "Tests passed"
+        //}
     }
 
     stage('Push image') {
         /* 
 			You would need to first register with DockerHub before you can push images to your account
 		*/
-        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
+       // docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
             //customImage.push("${env.BUILD_NUMBER}")
-            customImage.push("latest")
-            } 
-                echo "Trying to Push Docker Build to DockerHub"
+      //      customImage.push("latest")
+      //      } 
+      //          echo "Trying to Push Docker Build to DockerHub"
     }
 
     stage('Deploy to Kubernetes') {
