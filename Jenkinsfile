@@ -40,7 +40,7 @@ node {
     stage('Deploy to Kubernetes') {
         
         //sh "kubectl set image deployments/capstone-app capstone-app=${registry}:latest"
-        sh "/usr/local/bin/kubectl apply -f deployment.yml"
+        sh "/usr/local/bin/kubectl apply -f deployment.yml --validate=false"
     }
 
     
