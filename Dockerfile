@@ -6,7 +6,7 @@ WORKDIR /app
 #copy source code
 COPY . hello.py /app/
 
-RUN pip install --upgrade pip &&\
+RUN pip install --upgrade pip --disable-pip-version-check &&\
     pip install --trusted-host pypi.pyton.org -r requirements.txt
 
 # Expose port 80
