@@ -42,7 +42,7 @@ node {
         withAWS(region:'us-west-2',credentials:'aws-cred'){
         
         //sh "kubectl set image deployments/capstone-app capstone-app=${registry}:latest"
-        sh "/usr/local/bin/aws eks --region us-west-2 update-kubeconfig --name rjCloud --role-arn arn:aws:iam::077311932223:user/MainUser"
+        sh "/usr/local/bin/aws eks --region us-west-2 update-kubeconfig --name rjCloud"
 
         sh "/usr/local/bin/kubectl apply -f deployment.yml --validate=false"
         sh "/usr/local/bin/kubectl get pods"
