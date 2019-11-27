@@ -39,7 +39,7 @@ node {
 
     stage('Deploy to Kubernetes') {
 
-        withAWS(region:'us-east-2',credentials:'aws-static'){
+        withAWS(region:'us-west-2',credentials:'aws-cred'){
         
         //sh "kubectl set image deployments/capstone-app capstone-app=${registry}:latest"
         sh "/usr/local/bin/kubectl apply -f deployment.yml --validate=false"
