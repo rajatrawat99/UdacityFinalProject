@@ -37,5 +37,11 @@ node {
                 echo "Trying to Push Docker Build to DockerHub"
     }
 
+    stage('Deploy to Kubernetes') {
+        
+        //sh "kubectl set image deployments/capstone-app capstone-app=${registry}:latest"
+        sh "kubectl apply -f deployment.yml"
+    }
+
     
 }

@@ -19,7 +19,7 @@ spec:
         app: udacity-capstone
     spec:
       containers:
-      - image: rajatrawat88/myrepo:run2
+      - image: rajatrawat88/myrepo:latest
         imagePullPolicy: Always
         name: udacity-capstone
         ports:
