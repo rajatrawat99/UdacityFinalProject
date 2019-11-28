@@ -7,6 +7,14 @@ node {
         checkout scm
     }
 
+    stage('Build Cluster'){
+        sh "eksctl create cluster --name rjCloud --version 1.14 --region us-west-2 --nodegroup-name standard-workers --node-type t3.medium --nodes 1 --nodes-min 1 --nodes-max 2 --managed"
+    }
+
+    stage('Update kubectl config'){
+        sh "/usr/local/bin/aws eks --region us-west-2 update-kubeconfig --name rjCloud"
+    }
+
     stage("Linting") {
       echo 'Linting...'
       //sh '/home/linuxbrew/.linuxbrew/bin/hadolint Dockerfile'
@@ -42,8 +50,7 @@ node {
         withAWS(region:'us-west-2',credentials:'aws-cred'){
         
         //sh "kubectl set image deployments/capstone-app capstone-app=${registry}:latest"
-        sh "/usr/local/bin/aws eks --region us-west-2 update-kubeconfig --name rjCloud"
-
+    
         sh "/usr/local/bin/kubectl apply -f deployment.yml --validate=false"
         sh "/usr/local/bin/kubectl get pods"
         sh "/usr/local/bin/kubectl get deployment"
