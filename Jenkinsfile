@@ -14,13 +14,13 @@ node {
 
     stage('Build Cluster'){
          withAWS(region:'us-west-2',credentials:'aws-cred'){
-            sh "eksctl create cluster --name rjtCloud --version 1.14 --region us-west-2 --nodegroup-name standard-workers --node-type t3.medium --nodes 1 --nodes-min 1 --nodes-max 2 --managed"
+            sh "eksctl create cluster --name testCloud --version 1.14 --region us-west-2 --nodegroup-name standard-workers --node-type t3.medium --nodes 1 --nodes-min 1 --nodes-max 2 --managed"
          }
     }
 
     stage('Update kubectl config'){
          withAWS(region:'us-west-2',credentials:'aws-cred'){
-            sh "/usr/local/bin/aws eks --region us-west-2 update-kubeconfig --name rjtCloud"
+            sh "/usr/local/bin/aws eks --region us-west-2 update-kubeconfig --name testCloud"
          }
     }
 

@@ -4,7 +4,7 @@ FROM python:3.7.3-stretch
 WORKDIR /app
 
 #copy source code
-COPY// . flaskApp.py /app/
+COPY . flaskApp.py /app/
 
 # hadolint ignore=DL3013
 RUN pip install --upgrade pip --disable-pip-version-check &&\
