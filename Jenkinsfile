@@ -15,14 +15,14 @@ node {
     stage('Build EKS Cluster'){
         /* Use eksctl to create EKS Kubernetes Cluster */
          withAWS(region:'us-west-2',credentials:'aws-cred'){
-            sh "eksctl create cluster --name RJTCloud --version 1.14 --region us-west-2 --nodegroup-name standard-workers --node-type t3.medium --nodes 1 --nodes-min 1 --nodes-max 2 --managed"
+            sh "eksctl create cluster --name RJCloud --version 1.14 --region us-west-2 --nodegroup-name standard-workers --node-type t3.medium --nodes 1 --nodes-min 1 --nodes-max 2 --managed"
          }
     }
 
     stage('Update kubectl config for EKS Cluster'){
         /* Update the config file so that kubectl can access it */
          withAWS(region:'us-west-2',credentials:'aws-cred'){
-            sh "/usr/local/bin/aws eks --region us-west-2 update-kubeconfig --name RJTCloud"
+            sh "/usr/local/bin/aws eks --region us-west-2 update-kubeconfig --name RJCloud"
          }
     }
 
