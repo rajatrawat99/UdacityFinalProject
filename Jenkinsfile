@@ -51,7 +51,7 @@ node {
     stage('Deploy Docker image to AWS EKS Kubernetes') {
         /* Deploy the image to AWS EKS */
         withAWS(region:'us-west-2',credentials:'aws-cred'){    
-        sh "/usr/local/bin/kubectl apply -f deployment.yml --validate=false"
+        sh "/usr/local/bin/kubectl apply -f deployment.yml"
         sh "/usr/local/bin/kubectl get pods"
         sh "/usr/local/bin/kubectl get deployment"
         }
