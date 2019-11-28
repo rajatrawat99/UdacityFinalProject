@@ -4,7 +4,7 @@ FROM python:3.7.3-stretch
 WORKDIR /app
 
 #copy source code
-COPY . hello.py /app/
+COPY// . flaskApp.py /app/
 
 # hadolint ignore=DL3013
 RUN pip install --upgrade pip --disable-pip-version-check &&\
@@ -13,5 +13,5 @@ RUN pip install --upgrade pip --disable-pip-version-check &&\
 # Expose port 80
 EXPOSE 80
 
-# Run app.py at container launch
-CMD ["python", "hello.py"]
+# Run flaskApp.py at container launch
+CMD ["python", "flaskApp.py"]

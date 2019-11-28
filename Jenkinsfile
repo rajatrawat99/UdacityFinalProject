@@ -7,6 +7,11 @@ node {
         checkout scm
     }
 
+    stage("Linting") {
+      echo 'Linting...'
+      sh '/home/linuxbrew/.linuxbrew/bin/hadolint Dockerfile'
+    }
+
     stage('Build Cluster'){
          withAWS(region:'us-west-2',credentials:'aws-cred'){
             sh "eksctl create cluster --name rjtCloud --version 1.14 --region us-west-2 --nodegroup-name standard-workers --node-type t3.medium --nodes 1 --nodes-min 1 --nodes-max 2 --managed"
@@ -17,12 +22,6 @@ node {
          withAWS(region:'us-west-2',credentials:'aws-cred'){
             sh "/usr/local/bin/aws eks --region us-west-2 update-kubeconfig --name rjtCloud"
          }
-    }
-
-    stage("Linting") {
-      echo 'Linting...'
-      //sh '/home/linuxbrew/.linuxbrew/bin/hadolint Dockerfile'
-      //sh 'pylint --disable=R,C,W1203 app.py'
     }
 
     stage('Build image') {
@@ -51,10 +50,7 @@ node {
 
     stage('Deploy to Kubernetes') {
 
-        withAWS(region:'us-west-2',credentials:'aws-cred'){
-        
-        //sh "kubectl set image deployments/capstone-app capstone-app=${registry}:latest"
-    
+        withAWS(region:'us-west-2',credentials:'aws-cred'){    
         sh "/usr/local/bin/kubectl apply -f deployment.yml --validate=false"
         sh "/usr/local/bin/kubectl get pods"
         sh "/usr/local/bin/kubectl get deployment"

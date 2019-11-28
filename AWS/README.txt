@@ -1,1 +1,0 @@
-URL: http://proje-myloa-d5wbohic63s7-973378111.us-west-2.elb.amazonaws.com/myWebPage.html
