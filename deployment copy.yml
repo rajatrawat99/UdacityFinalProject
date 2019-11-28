@@ -6,7 +6,7 @@ metadata:
 spec:
   replicas: 2
   strategy:
-    type: RollingUpdate
+  type: RollingUpdate
   rollingUpdate:
     maxSurge: 1
     maxUnavailable: 25%
@@ -24,10 +24,10 @@ spec:
         name: udacity-capstone
         ports:
         - containerPort: 80
-          readinessProbe:
-            httpGet:
-              path: /
-              port: 80
-              initialDelaySeconds: 5
-              periodSeconds: 5
-              successThreshold: 1
+        readinessProbe:
+          httpGet:
+             path: /
+             port: 80
+             initialDelaySeconds: 5
+             periodSeconds: 5
+             successThreshold: 1
