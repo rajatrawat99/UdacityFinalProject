@@ -46,8 +46,8 @@ node {
     stage('Deploy Docker image to EKS') {
         /* Deploy the image to AWS EKS */
         withAWS(region:'us-west-2',credentials:'aws-cred'){    
-        sh "kubectl set image deployments/udacity-capstone udacity-capstone=${registry}:${env.BUILD_NUMBER}"
         sh "/usr/local/bin/kubectl apply -f deployment.yml --validate=false"
+        sh "kubectl set image deployments/udacity-capstone udacity-capstone=${registry}:${env.BUILD_NUMBER}"
         sh "/usr/local/bin/kubectl get pods"
         sh "/usr/local/bin/kubectl get deployment"
         }
