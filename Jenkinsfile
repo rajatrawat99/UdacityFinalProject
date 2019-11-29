@@ -30,8 +30,8 @@ node {
     stage('Push Docker image to Docker-hub') {
         /* Registering with Docker-hub and then push the image to Docker-hub */
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
-            customImage.push("${env.BUILD_NUMBER}")
-            //customImage.push("latest")
+            //customImage.push("${env.BUILD_NUMBER}")
+            customImage.push("latest")
             } 
                 echo "Trying to Push Docker Build to DockerHub"
     }
@@ -46,8 +46,8 @@ node {
     stage('Deploy Docker image to EKS') {
         /* Deploy the image to AWS EKS */
         withAWS(region:'us-west-2',credentials:'aws-cred'){    
+        sh "kubectl set image deployments/udacity-capstone udacity-capstone=${registry}:latest"
         sh "/usr/local/bin/kubectl apply -f deployment.yml --validate=false"
-        sh "kubectl set image deployments/udacity-capstone udacity-capstone=${registry}:${env.BUILD_NUMBER}"
         sh "/usr/local/bin/kubectl get pods"
         sh "/usr/local/bin/kubectl get deployment"
         }
