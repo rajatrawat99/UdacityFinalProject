@@ -4,11 +4,11 @@ metadata:
   name: udacity-capstone
   namespace: default
 spec:
-  replicas: 2
+  replicas: 3
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxSurge: 1
+      maxSurge: 2
       maxUnavailable: 25%
   selector:
     matchLabels:
@@ -19,7 +19,7 @@ spec:
         app: udacity-capstone
     spec:
       containers:
-      - image: 
+      - image: rajatrawat88/myrepo:latest
         imagePullPolicy: Always
         name: udacity-capstone
         ports:
