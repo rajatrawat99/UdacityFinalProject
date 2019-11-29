@@ -4,9 +4,9 @@ In this project, I have deployed a simple flask application to the AWS EKS.  for
 1. https://medium.com/@andresaaap/capstone-cloud-devops-nanodegree-4493ab439d48
 2. https://medium.com/@andresaaap/jenkins-pipeline-for-blue-green-deployment-using-aws-eks-kubernetes-docker-7e5d6a401021
 
-I have not used ansible or cloudformation for building the environment as I said I followed the the above links from Alvaro Andres which takes you to this aws link: https://docs.aws.amazon.com/eks/latest/userguide/getting-started-eksctl.html. 
+I have not used ansible or cloudformation for building the environment as I said I followed the the above links from Alvaro Andres which takes you to this aws link: https://docs.aws.amazon.com/eks/latest/userguide/getting-started-eksctl.html. (Also it is mentioned here: https://medium.com/@andresaaap/jenkins-pipeline-for-blue-green-deployment-using-aws-eks-kubernetes-docker-7e5d6a401021)
 
-This makes building EKS cluster really easy as in this you only have to run one command and declare all the variable in it and also it is very easy to update it.
+Here I have used "eksctl create cluster" command, which also jenkins jx uses to create EKS cluster in background. This makes building EKS cluster really easy as in this you only have to run one command and declare all the variable in it and also it is very easy to update it.
 in my project I have kept this command in a shell script in which you send the name of the environment as command line argument. 
 Like this "./aws.sh RAJATCloud" . below image shows the "aws.sh" shell script
 ![Image of Pods](https://github.com/rajatrawat99/UdacityFinalProject/blob/master/aws.PNG)
