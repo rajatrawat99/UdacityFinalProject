@@ -11,11 +11,13 @@ in my project I have kept this command in a shell script in which you send the n
 Like this "./aws.sh RAJATCloud" . below image shows the "aws.sh" shell script
 ![Image of Pods](https://github.com/rajatrawat99/UdacityFinalProject/blob/master/aws.PNG)
 
+Below image shows how to run the "aws.sh" script with env name as argument passed from command line, also it shows its output
+![Image of shellScriptOutput](https://github.com/rajatrawat99/UdacityFinalProject/blob/master/scriptOutput.PNG)
+
 I have chosen the the rolling deployment here as it is easy to implement here. I have chosen 3 replicas for my rolling deployment which means in any case of update there will always be 3 pods serving my app. Old pods will only get terminated when there is newly 3 created pods to serve the application. In short there will never be downtime for my application which is ultimate aim of the Rolling update.
 
 Below image can demostrate working of the rolling update better:
-
-![Image of Pods](https://github.com/rajatrawat99/UdacityFinalProject/blob/master/pods.PNG)
+![Image of shellScript](https://github.com/rajatrawat99/UdacityFinalProject/blob/master/pods.PNG)
 
 First stage shows when the update has not started, you can see there are 3 pods serving. After 1st stage rolling update has started. Then till the last stage you can see pods are getting created and terminated but the total number of pods always remains 3 which results no downtime which is ultimate goal of rolling deployment. When the update is done you can see new pods have been created and there is no downtime.
 
@@ -30,9 +32,9 @@ Jenkinsfile Pipeline Stages
 8. Clean Docker Images: Cleaning Dangling docker images
 
 Below image shows the failing of the pipeline at linting stage due to error at Dockerfile
-![Image of Pods](https://github.com/rajatrawat99/UdacityFinalProject/blob/master/fail1.PNG)
+![Image of piplelineFail](https://github.com/rajatrawat99/UdacityFinalProject/blob/master/fail1.PNG)
 
 
 
 Below image shows all the stages has passed successfully
-![Image of Pods](https://github.com/rajatrawat99/UdacityFinalProject/blob/master/pass1.PNG)
+![Image of PipelinePass](https://github.com/rajatrawat99/UdacityFinalProject/blob/master/pass1.PNG)
