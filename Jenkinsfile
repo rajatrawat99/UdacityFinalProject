@@ -1,6 +1,7 @@
 node {
     def customImage
     def registry = "rajatrawat88/myrepo"
+    def cloudName = "RJTCloud"
     stage('Clone repository') {
         /* Checkout git ripo */
         checkout scm
@@ -15,14 +16,14 @@ node {
     stage('Build EKS Cluster'){
         /* Use eksctl to create EKS Kubernetes Cluster */
          withAWS(region:'us-west-2',credentials:'aws-cred'){
-            sh "eksctl create cluster --name RJCloud --version 1.14 --region us-west-2 --nodegroup-name standard-workers --node-type t3.medium --nodes 1 --nodes-min 1 --nodes-max 2 --managed"
+            sh "eksctl create cluster --name ${cloudName} --version 1.14 --region us-west-2 --nodegroup-name standard-workers --node-type t3.medium --nodes 1 --nodes-min 1 --nodes-max 2 --managed"
          }
     }
 
-    stage('Update kubectl config for EKS Cluster'){
+    stage('Update kubectl config'){
         /* Update the config file so that kubectl can access it */
          withAWS(region:'us-west-2',credentials:'aws-cred'){
-            sh "/usr/local/bin/aws eks --region us-west-2 update-kubeconfig --name RJCloud"
+            sh "/usr/local/bin/aws eks --region us-west-2 update-kubeconfig --name ${cloudName}"
          }
     }
 
@@ -48,7 +49,7 @@ node {
                 echo "Trying to Push Docker Build to DockerHub"
     }
 
-    stage('Deploy Docker image to AWS EKS Kubernetes') {
+    stage('Deploy Docker image to EKS') {
         /* Deploy the image to AWS EKS */
         withAWS(region:'us-west-2',credentials:'aws-cred'){    
         sh "/usr/local/bin/kubectl apply -f deployment.yml --validate=false"
