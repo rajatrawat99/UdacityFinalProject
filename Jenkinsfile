@@ -40,7 +40,7 @@ node {
         }
     }
 
-    stage('Push image to Docker-hub') {
+    stage('Push Docker image to Docker-hub') {
         /* Registering with Docker-hub and then push the image to Docker-hub */
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub') {
             //customImage.push("${env.BUILD_NUMBER}")
