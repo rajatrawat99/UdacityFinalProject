@@ -12,7 +12,24 @@ I have chosen the the rolling deployment here as it is easy to implement here. I
 
 Below image can demostrate working of the rolling update better:
 
-![Image of Pods](https://github.com/rajatrawat99/UdacityFinalProject/blob/master/pass1.PNG)
+![Image of Pods](https://github.com/rajatrawat99/UdacityFinalProject/blob/master/pods.PNG)
 
 First stage shows when the update has not started, you can see there are 3 pods serving. After 1st stage rolling update has started. Then till the last stage you can see pods are getting created and terminated but the total number of pods always remains 3 which results no downtime which is ultimate goal of rolling deployment. When the update is done you can see new pods have been created and there is no downtime.
 
+Jenkinsfile Pipeline Stages
+1. Clone repository: Checkout git ripo
+2. Linting Dockerfile: Lint the Dockerfile with Hadolint
+3. Build Docker image: Builds the Docker image
+4. Test Docker image: Test the Docker image
+5. Push Docker image to Docker-hub: Registering with Docker-hub and then push the image to Docker-hub
+6. Update kubectl config: Update the config file so that kubectl can access it
+7. Deploy Docker image to EKS: Deploy the image to AWS EKS Cluster
+8. Clean Docker Images: Cleaning Dangling docker images
+
+Below image shows the failing of the pipeline at linting stage due to error at Dockerfile
+![Image of Pods](https://github.com/rajatrawat99/UdacityFinalProject/blob/master/fail1.PNG)
+
+
+
+Below image shows all the stages has passed successfully
+![Image of Pods](https://github.com/rajatrawat99/UdacityFinalProject/blob/master/pass1.PNG)
