@@ -47,7 +47,7 @@ node {
         /* Deploy the image to AWS EKS */
         withAWS(region:'us-west-2',credentials:'aws-cred'){    
         sh "/usr/local/bin/kubectl apply -f deployment.yml --validate=false"
-        sh "kubectl set image deployments/udacity-capstone udacity-capstone=${registry}:${env.BUILD_NUMBER}"
+        sh "kubectl set image deployments/udacity-capstone udacity-capstone=${registry}:latest"
         sh "/usr/local/bin/kubectl get pods"
         sh "/usr/local/bin/kubectl get deployment"
         }
