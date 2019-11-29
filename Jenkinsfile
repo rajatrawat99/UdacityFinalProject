@@ -55,7 +55,7 @@ node {
 
     stage("Clean Docker Images") {
         /* Cleaning Dangling docker images */
-      sh "yes y | docker system prune"
+      sh "yes y | docker system prune --all --volumes"
     }
 
     
