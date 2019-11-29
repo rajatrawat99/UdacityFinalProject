@@ -1,42 +1,16 @@
-[![CircleCI](https://circleci.com/gh/rajatrawat99/UdacityProject04.svg?style=svg)](https://circleci.com/gh/rajatrawat99/UdacityProject04)
-
 ## Project Overview
 
-In this project, you will apply the skills you have acquired in this course to operationalize a Machine Learning Microservice API. 
+In this project, I have deployed a simple flask application to the AWS EKS.  for this project I have used instructions of Alvaro Andres from following two links:
+1. https://medium.com/@andresaaap/capstone-cloud-devops-nanodegree-4493ab439d48
+2. https://medium.com/@andresaaap/jenkins-pipeline-for-blue-green-deployment-using-aws-eks-kubernetes-docker-7e5d6a401021
 
-You are given a pre-trained, `sklearn` model that has been trained to predict housing prices in Boston according to several features, such as average rooms in a home and data about highway access, teacher-to-pupil ratios, and so on. You can read more about the data, which was initially taken from Kaggle, on [the data source site](https://www.kaggle.com/c/boston-housing). This project tests your ability to operationalize a Python flask app—in a provided file, `app.py`—that serves out predictions (inference) about housing prices through API calls. This project could be extended to any pre-trained machine learning model, such as those for image recognition and data labeling.
+I have not used ansible or cloudformation for building the environment as I said I followed the the above links which takes you to this aws link: https://docs.aws.amazon.com/eks/latest/userguide/getting-started-eksctl.html. 
 
-### Project Tasks
+This makes building EKS cluster really easy as in this you only have to run one command and declare all the variable in it and also it is very easy to update it.
+in my project I have kept this command in a shell script in which you send the name of the environment as command line argument. like this "./aws.sh RAJATCloud"
+I have chosen the the rolling deployment here as it is easy to implement here. I have chosen 3 replicas for my rolling deployment which means in any case of update there will always be 3 pods serving my app. Old pods will only get terminated when there is newly 3 created pods to serve the application. In short there will never be downtime for my application which is ultimate aim of the Rolling update.
 
-Your project goal is to operationalize this working, machine learning microservice using [kubernetes](https://kubernetes.io/), which is an open-source system for automating the management of containerized applications. In this project you will:
-* Test your project code using linting
-* Complete a Dockerfile to containerize this application
-* Deploy your containerized application using Docker and make a prediction
-* Improve the log statements in the source code for this application
-* Configure Kubernetes and create a Kubernetes cluster
-* Deploy a container using Kubernetes and make a prediction
-* Upload a complete Github repo with CircleCI to indicate that your code has been tested
+Below image can demostrate working of the rolling update better:
 
-You can find a detailed [project rubric, here](https://review.udacity.com/#!/rubrics/2576/view).
+First stage shows when the update has not started, you can see there are 3 pods serving. After 1st stage rolling update has started. Then till the last stage you can see pods are getting created and terminated but the total number of pods always remains 3 which results no downtime which is ultimate goal of rolling deployment. When the update is done you can see new pods have been created and there is no downtime.
 
-**The final implementation of the project will showcase your abilities to operationalize production microservices.**
-
----
-
-## Setup the Environment
-
-* Create a virtualenv and activate it
-* Run `make install` to install the necessary dependencies
-
-### Running `app.py`
-
-1. Standalone:  `python app.py`
-2. Run in Docker:  `./run_docker.sh`
-3. Run in Kubernetes:  `./run_kubernetes.sh`
-
-### Kubernetes Steps
-
-* Setup and Configure Docker locally
-* Setup and Configure Kubernetes locally
-* Create Flask app in Container
-* Run via kubectl
