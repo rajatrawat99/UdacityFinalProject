@@ -1,7 +1,7 @@
 node {
     def customImage
     def registry = "rajatrawat88/myrepo"
-    def cloudName = "RJTCloud"
+    def cloudName = "prodCloud"
     stage('Clone repository') {
         /* Checkout git ripo */
         checkout scm
