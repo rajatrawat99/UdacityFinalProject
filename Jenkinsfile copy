@@ -13,6 +13,19 @@ node {
       sh '/home/linuxbrew/.linuxbrew/bin/hadolint Dockerfile'
     }
 
+    stage('Build EKS Cluster'){
+        /* Use eksctl to create EKS Kubernetes Cluster */
+         withAWS(region:'us-west-2',credentials:'aws-cred'){
+            sh "eksctl create cluster --name ${cloudName} --version 1.14 --region us-west-2 --nodegroup-name standard-workers --node-type t3.medium --nodes 1 --nodes-min 1 --nodes-max 2 --managed"
+         }
+    }
+
+    stage('Update kubectl config'){
+        /* Update the config file so that kubectl can access it */
+         withAWS(region:'us-west-2',credentials:'aws-cred'){
+            sh "/usr/local/bin/aws eks --region us-west-2 update-kubeconfig --name ${cloudName}"
+         }
+    }
 
     stage('Build Docker image') {
         /* Build the Docker image */
@@ -36,17 +49,9 @@ node {
                 echo "Trying to Push Docker Build to DockerHub"
     }
 
-      stage('Update kubectl config'){
-        /* Update the config file so that kubectl can access it */
-         withAWS(region:'us-west-2',credentials:'aws-cred'){
-            sh "/usr/local/bin/aws eks --region us-west-2 update-kubeconfig --name ${cloudName}"
-         }
-    }
-
     stage('Deploy Docker image to EKS') {
         /* Deploy the image to AWS EKS */
         withAWS(region:'us-west-2',credentials:'aws-cred'){    
-        sh "kubectl set image deployments/udacity-capstone udacity-capstone=${registry}:latest"
         sh "/usr/local/bin/kubectl apply -f deployment.yml --validate=false"
         sh "/usr/local/bin/kubectl get pods"
         sh "/usr/local/bin/kubectl get deployment"
