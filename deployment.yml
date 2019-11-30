@@ -28,6 +28,6 @@ spec:
           httpGet:
             path: /
             port: 80
-            initialDelaySeconds: 5
-            periodSeconds: 5
+            initialDelaySeconds: 8
+            periodSeconds: 8
             successThreshold: 1
