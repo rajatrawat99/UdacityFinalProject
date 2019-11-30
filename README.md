@@ -29,7 +29,7 @@ Jenkinsfile Pipeline Stages
 5. Push Docker image to Docker-hub: Registering with Docker-hub and then push the image to Docker-hub
 6. Update kubectl config: Update the config file so that kubectl can access it
 7. Deploy Docker image to EKS: Deploy the image to AWS EKS Cluster
-8. Clean Docker Images: Cleaning Dangling docker images
+8. Clean Docker Images: Cleaning Dangling docker images and unused containers from the environment.
 
 Below image shows the failing of the pipeline at linting stage due to error at Dockerfile
 ![Image of piplelineFail](https://github.com/rajatrawat99/UdacityFinalProject/blob/master/fail1.PNG)
